@@ -19,6 +19,10 @@ class App extends Component {
     let stateText = this.state.text;
     if(stateText) {
       this.props.addReminder(this.state.text, this.state.dueDate)
+      this.setState({
+        text: '',
+        dueDate: ''
+      })
     }
   }
 
@@ -57,8 +61,8 @@ class App extends Component {
         <div className="title">Reminder Pro</div>
         <div className="form-inline">
           <div className="form-group mr-2">
-            <input type="text" className="form-control" placeholder="I have to ..." onChange = { (event) => this.setState({text: event.target.value })} />
-            <input type="datetime-local" className="form-control ml-2" onChange = { (event) => this.setState({ dueDate: event.target.value })}/>
+            <input type="text" className="form-control" value={this.state.text} placeholder="I have to ..." onChange = { (event) => this.setState({text: event.target.value })} />
+            <input type="datetime-local" className="form-control ml-2" value={this.state.dueDate} onChange = { (event) => this.setState({ dueDate: event.target.value })}/>
           </div>
           <button className="btn btn-success" onClick={ () => this.addReminder() }>Add Reminder</button>
         </div>
